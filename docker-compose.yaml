@@ -7,8 +7,8 @@ services:
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
       AWS_REGION: "us-east-1"
-      REACT_APP_AWS_USER_POOLS_ID: "us-east-1_UUvuW3IhM"
-      REACT_APP_CLIENT_ID: "7bks5m697iekrmenutuv2j3uou"
+      REACT_APP_AWS_USER_POOLS_ID: "us-east-1_4ziDftXXi"
+      REACT_APP_CLIENT_ID: "2ftg2r01fvubh8b86n4jecb20b"
       OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io"
       OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}"
       OTEL_SERVICE_NAME: 'backend-flask'
@@ -24,8 +24,8 @@ services:
       REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
-      REACT_APP_AWS_USER_POOLS_ID: "us-east-1_UUvuW3IhM"
-      REACT_APP_CLIENT_ID:  "7bks5m697iekrmenutuv2j3uou"
+      REACT_APP_AWS_USER_POOLS_ID: "us-east-1_4ziDftXXi"
+      REACT_APP_CLIENT_ID:  "2ftg2r01fvubh8b86n4jecb20b"
     build: ./frontend-react-js
     ports:
       - "3000:3000"
