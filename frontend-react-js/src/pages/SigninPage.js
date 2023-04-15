@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import './SigninPage.css';
 import React from "react";
 import {ReactComponent as Logo} from '../components/svg/logo.svg';
@@ -6,18 +7,15 @@ import { Link } from "react-router-dom";
 // [TODO] Authenication
 import { Auth } from 'aws-amplify';
 
-
 export default function SigninPage() {
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [errors, setErrors] = React.useState('');
 
-
   const onsubmit = async (event) => {
     setErrors('')
     event.preventDefault();
-  
     Auth.signIn(email, password)
     .then(user => {
       console.log('user',user)
@@ -25,17 +23,14 @@ export default function SigninPage() {
       window.location.href = "/"
     })
     .catch(error => { 
-      // eslint-disable-next-line eqeqeq
       if (error.code == 'UserNotConfirmedException') {
         window.location.href = "/confirm"
       }
-      setErrors(error.message)        
-
-
-
+      setErrors(error.message)
     });
     return false
   }
+
   const email_onchange = (event) => {
     setEmail(event.target.value);
   }

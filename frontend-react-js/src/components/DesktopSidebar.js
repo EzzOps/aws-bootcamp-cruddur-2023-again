@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import './DesktopSidebar.css';
 import Search from '../components/Search';
 import TrendingSection from '../components/TrendingsSection'
@@ -22,9 +23,8 @@ export default function DesktopSidebar(props) {
   if (props.user) {
     trending = <TrendingSection trendings={trendings} />
     suggested = <SuggestedUsersSection users={users} />
-  }else{
+  } else {
     join = <JoinSection />
-
   }
 
   return (
