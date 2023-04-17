@@ -1,13 +1,15 @@
 #! /usr/bin/bash
 -e # stop if it fails at any point
 
+#echo "==== db-setup"
 CYAN='\033[1;36m'
 NO_COLOR='\033[0m'
 LABEL="db-setup"
-printf "${CYAN}== ${LABEL}${NO_COLOR}\n"
-/workspace/aws-bootcamp-cruddur-2023-again/backend-flask/bin
-bin_path= backend-flask/bin
-source "/workspace/aws-bootcamp-cruddur-2023-again/backend-flask/bin/db-drop"
-source "/workspace/aws-bootcamp-cruddur-2023-again/backend-flask/bin/db-create"
-source "/workspace/aws-bootcamp-cruddur-2023-again/backend-flask/bin/db-schema-load"
-source "/workspace/aws-bootcamp-cruddur-2023-again/backend-flask/bin/db-seed"
+printf "${CYAN}==== ${LABEL}${NO_COLOR}\n"
+
+bin_path="$(realpath .)/bin"
+
+source "$bin_path/db-drop"
+source "$bin_path/db-create"
+source "$bin_path/db-schema-load"
+source "$bin_path/db-seed"
