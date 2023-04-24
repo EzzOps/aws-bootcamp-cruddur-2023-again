@@ -4,8 +4,7 @@ import os
 
 def lambda_handler(event, context):
     user = event['request']['userAttributes']
-
-    print("user Atributies")
+    print('userAttributes')
     print(user)
 
     user_display_name  = user['name']
@@ -40,8 +39,7 @@ def lambda_handler(event, context):
       print(error)
     finally:
       if conn is not None:
-        cur.close()
-        conn.close()
-        print('Database connection closed.')
-
+          cur.close()
+          conn.close()
+          print('Database connection closed.')
     return event
