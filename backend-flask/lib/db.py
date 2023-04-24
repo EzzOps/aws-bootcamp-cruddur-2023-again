@@ -96,7 +96,7 @@ class Db:
     ) array_row);
     """
     return sql
-  def print_sql_err(self,err):
+  def print_sql_err(self, err):
     # get details about the exception
     err_type, err_obj, traceback = sys.exc_info()
 
@@ -106,9 +106,5 @@ class Db:
     # print the connect() error
     print ("\npsycopg ERROR:", err, "on line number:", line_num)
     print ("psycopg traceback:", traceback, "-- type:", err_type)
-
-    # print the pgcode and pgerror exceptions
-    print ("pgerror:", err.pgerror)
-    print ("pgcode:", err.pgcode, "\n")
 
 db = Db()
