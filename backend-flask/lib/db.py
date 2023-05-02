@@ -41,7 +41,7 @@ class Db:
     print(f'{cyan} SQL STATEMENT-[{title}]------{no_color}')
     print(sql,params)
   def query_commit(self,sql,params={}):
-    self.print_sql('commit with returning',sql)
+    self.print_sql('commit with returning',sql,params)
 
     pattern = r"\bRETURNING\b"
     is_returning_id = re.search(pattern, sql)
@@ -84,13 +84,12 @@ class Db:
           return json[0]
   def query_value(self,sql,params={}):
     self.print_sql('value',sql,params)
-
     with self.pool.connection() as conn:
       with conn.cursor() as cur:
         cur.execute(sql,params)
         json = cur.fetchone()
         return json[0]
-
+        
   def query_wrap_object(self,template):
     sql = f"""
     (SELECT COALESCE(row_to_json(object_row),'{{}}'::json) FROM (
@@ -105,7 +104,7 @@ class Db:
     ) array_row);
     """
     return sql
-  def print_sql_err(self, err):
+  def print_sql_err(self,err):
     # get details about the exception
     err_type, err_obj, traceback = sys.exc_info()
 
@@ -115,5 +114,9 @@ class Db:
     # print the connect() error
     print ("\npsycopg ERROR:", err, "on line number:", line_num)
     print ("psycopg traceback:", traceback, "-- type:", err_type)
+
+    # print the pgcode and pgerror exceptions
+    print ("pgerror:", err.pgerror)
+    print ("pgcode:", err.pgcode, "\n")
 
 db = Db()
