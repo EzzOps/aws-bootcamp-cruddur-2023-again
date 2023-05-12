@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from opentelemetry import trace # uses only opentelemetry-api in requirements.txt
-
+from utils.bcolors import *
 from lib.db import db
 
 # tracer = trace.get_tracer("home.activities")
@@ -18,7 +18,7 @@ class HomeActivities:
     # span.set_attribute("app.result_length", len(results))
     
     sql = db.template('activities', 'home')
-    results = db.query_json_array(sql)
+    results = db.query_array_json(sql)
     print(f"sql statement: {sql}\n")
 
     return results

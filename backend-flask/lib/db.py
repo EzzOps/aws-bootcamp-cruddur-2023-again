@@ -3,8 +3,8 @@ import os
 import re
 import sys
 from flask import current_app as app
-
-class Db:
+from utils.bcolors import *
+class db:
   def __init__(self):
     self.init_pool()
 
@@ -82,13 +82,18 @@ class Db:
           "{}"
         else:
           return json[0]
-  def query_value(self,sql,params={}):
-    self.print_sql('value',sql,params)
+  def query_value(self, sql, params={}):
     with self.pool.connection() as conn:
       with conn.cursor() as cur:
-        cur.execute(sql,params)
+        self.print_sql(cur, sql, params)
+        cur.execute(sql, params)
         json = cur.fetchone()
-        return json[0]
+        if json is None:
+            return None  # or raise an exception, depending on your use case
+        else:
+            return json[0]
+
+
         
   def query_wrap_object(self,template):
     sql = f"""
@@ -119,4 +124,4 @@ class Db:
     print ("pgerror:", err.pgerror)
     print ("pgcode:", err.pgcode, "\n")
 
-db = Db()
+db = db()
