@@ -178,7 +178,10 @@ def data_message_groups():
     
     return {}, 401  # This occurs when an unauthorised user tries to access something accessible only by authenticated user.
 
-
+@app.route('/api/health-check')
+def health_check():
+  return {'success': True}, 200
+  
 @app.route("/api/messages/<string:message_group_uuid>", methods=['GET'])
 def data_messages(message_group_uuid): 
   access_token = jwttv.extract_access_token(request.headers)
